@@ -1,3 +1,4 @@
+import { Box, Button, Heading, Text } from "@chakra-ui/react";
 import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
@@ -31,23 +32,20 @@ export const ScoreBoard = ({ finalScore, questions }) => {
     );
   return (
     <>
-      <div className="row">
-        <div className="col-5  m-auto">
-          <div className="card border shadow-lg bg-light bg-gradient bg-opacity-50 ">
-            <div className="card-header p-3 ">
-              <h2>Your Score</h2>
-            </div>
-            <div className="score-section card-body p-4">
-              <h4>
-                You answered <b className="text-primary">{finalScore} </b>/
-                {" " + questions.length} questions correctly
-              </h4>
-              <Link to="/" className="btn btn-dark mt-3">
-                Take Another Quiz
-              </Link>
-            </div>
-          </div>
-        </div>
+      <div>
+        <Box w={[320, 500]} m="auto" bg="gray.400" borderRadius="30">
+          <Text pt="6" ps="6">
+            <h2>Your Score</h2>
+          </Text>
+          <Box p="5" className="score-section ">
+            <Heading m="5">
+              You Scored <b>{finalScore} </b>/{" " + questions.length}
+            </Heading>
+            <Button bg="red.300">
+              <Link to="/">Take Another Quiz</Link>
+            </Button>
+          </Box>
+        </Box>
       </div>
     </>
   );

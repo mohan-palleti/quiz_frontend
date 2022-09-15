@@ -46,45 +46,6 @@ export const HomeLeft = () => {
       </Box>
     );
   return (
-    // <div>
-    //   <div className="container-fluid ">
-    //     <div className="col-12 d-flex flex-column shadow-lg mt-2 p-2">
-    //       <h2 className="text-light">Published Quizes</h2>
-    //       {allQuizes.length === 0 && <p>No Quizes to show</p>}
-    //       {allQuizes.map((ele) => {
-    //         if (ele.isPublished)
-    //           return (
-    //             <span key={nanoid(9)}>
-    //               <QuizCard quiz={ele} />
-    //             </span>
-    //           );
-    //       })}
-    //     </div>
-    //     <div className="row ">
-    //       <div className="col-6 m-auto d-flex">
-    //         <p className="form-text m-2">{pages.length > 0 && "Pages"}</p>
-    //         <nav aria-label="Page navigation example">
-    //           <ul className="pagination ">
-    //             {pages.map((e, i) => (
-    //               <li className="page-item" key={nanoid(6)}>
-    //                 <button
-    //                   className="page-link"
-    //                   disabled={pageNumber.current === i + 1}
-    //                   onClick={() => {
-    //                     pageNumber.current = i + 1;
-    //                     dispatch(getAllQuizes(i + 1));
-    //                   }}
-    //                 >
-    //                   {i + 1}
-    //                 </button>
-    //               </li>
-    //             ))}
-    //           </ul>
-    //         </nav>
-    //       </div>
-    //     </div>
-    //   </div>
-    // </div>
     <Container maxW="6xl" px={{ base: 6, md: 3 }} py={14}>
       <Stack
         direction={{ base: "column", md: "row" }}
@@ -129,8 +90,9 @@ export const HomeLeft = () => {
             })}
           </Stack>
           <Stack
-            spacing={{ base: 5, sm: 2 }}
-            direction={{ base: "column", sm: "row" }}
+            pl={[10, 10]}
+            spacing={{ base: 5, sm: 5 }}
+            direction={{ base: "row", sm: "row" }}
             alignItems="center"
           >
             {pages.map((e, i) => (
