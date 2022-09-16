@@ -22,11 +22,8 @@ export const Title = ({ title, editQuiz }) => {
     const { value, error } = quizHeading.validate({
       title: title.current,
     });
-    // console.log("vvvv", value);
 
     if (error) {
-      //console.log(error.message);
-      //setError(error.message);
       toast({
         title: error.message,
         status: "error",
@@ -61,14 +58,13 @@ export const Title = ({ title, editQuiz }) => {
             <FormLabel>Title</FormLabel>
             <Input
               type="text"
-              bg="green.100"
+              w={["80%", "60%"]}
               placeholder="Quiz Title"
               defaultValue={title.current}
               onChange={(e) => (title.current = e.target.value)}
             />
           </FormControl>
-          <label>Title</label>
-          <input type="text" />
+
           <Button
             colorScheme="yellow"
             type="submit"

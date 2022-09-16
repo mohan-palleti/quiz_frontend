@@ -58,7 +58,7 @@ export function Navbar() {
               )}
 
               <Button onClick={toggleColorMode}>
-                {colorMode === "light" ? <MoonIcon /> : <SunIcon />}
+                {colorMode === "dark" ? <MoonIcon /> : <SunIcon />}
               </Button>
             </Stack>
           </Flex>

@@ -5,6 +5,7 @@ const initialState = {
   allQuizes: [],
   totalPages: 0,
   error: null,
+  loading: true,
 };
 
 export const getAllQuizes = createAsyncThunk("quiz/allquizes", async (page) => {
@@ -28,11 +29,13 @@ const quizSlice = createSlice({
       if (typeof action.payload === "string") {
         //store.allQuizes = [];
         store.error = action.payload;
+        store.loading = false;
         return;
       }
       //console.log("action:", action);
       store.allQuizes = action.payload.currentQuiz;
       store.totalPages = action.payload.totalPages;
+      store.loading = false;
     });
   },
 });

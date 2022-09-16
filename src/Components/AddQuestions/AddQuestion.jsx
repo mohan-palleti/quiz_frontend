@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { SingleQuestion } from "../SingleQuestion/SingleQuestion";
 import axios from "axios";
-import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { quizHeading } from "../joi-schema/quizHeadingSchema";
 import { nanoid } from "nanoid";
@@ -52,7 +51,6 @@ export const AddQuestion = ({ quizData }) => {
           });
         });
     } else {
-      //  toast.warn("PLease Login");
       toast({
         title: "Please Login",
         status: "error",
@@ -94,6 +92,12 @@ export const AddQuestion = ({ quizData }) => {
       });
     } else {
       if (Cookies.get("QuizUser")) {
+        toast({
+          title: "Saving",
+          status: "success",
+          duration: 1000,
+          isClosable: true,
+        });
         axios
           .patch(
             `https://quiz-backend-production.up.railway.app/quiz/${quizData.id}`,
@@ -106,11 +110,15 @@ export const AddQuestion = ({ quizData }) => {
           )
           .then((res) => {
             getQuiz();
-            toast.success("Title Saved");
+            toast({
+              title: "Saved",
+              status: "success",
+              duration: 9000,
+              isClosable: true,
+            });
           })
           .catch((err) => {
-            console.log(err);
-            // toast.warn("Something Went Wrong");
+            //console.log(err);
             toast({
               title: err.message,
               status: "error",
@@ -119,7 +127,6 @@ export const AddQuestion = ({ quizData }) => {
             });
           });
       } else {
-        //toast.warn("Please Login");
         toast({
           title: "Please login",
           status: "error",
@@ -133,6 +140,12 @@ export const AddQuestion = ({ quizData }) => {
 
   //!--------------------------------Delete Quiz------------------------
   const deleteQuiz = () => {
+    toast({
+      title: "Deleting",
+      status: "success",
+      duration: 9000,
+      isClosable: true,
+    });
     axios
       .delete(
         `https://quiz-backend-production.up.railway.app/quiz/${quizData.id}`,
@@ -143,7 +156,6 @@ export const AddQuestion = ({ quizData }) => {
         }
       )
       .then((res) => {
-        // toast.success("Quiz Deleted");
         toast({
           title: "Quiz Deleted",
           status: "success",
@@ -154,7 +166,6 @@ export const AddQuestion = ({ quizData }) => {
       })
       .catch((err) => {
         console.log(err);
-        // toast.warn("Deleted Failed , try again", err.message);
         toast({
           title: err.message,
           status: "error",
@@ -165,7 +176,7 @@ export const AddQuestion = ({ quizData }) => {
   };
 
   return (
-    <Box bg="#e2eee8" borderRadius="5" p="2" fontSize={[10, 20]}>
+    <Box borderRadius="5" p="2" fontSize={[10, 20]}>
       <div>
         <Title title={title} editQuiz={editQuiz} />
 
@@ -199,7 +210,6 @@ export const AddQuestion = ({ quizData }) => {
         <>
           <Button
             bg="blackAlpha.600"
-            colorScheme="white"
             onClick={() => {
               setAddQues(true);
             }}

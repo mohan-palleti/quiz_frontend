@@ -4,7 +4,13 @@ import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 import { ScoreBoard } from "./ScoreBoard";
 import { ToastContainer, toast } from "react-toastify";
-import { Heading, Text } from "@chakra-ui/react";
+import {
+  Box,
+  Heading,
+  Text,
+  useColorModeValue,
+  useToast,
+} from "@chakra-ui/react";
 
 export const Quiz = ({ questions }) => {
   const { id } = useParams();
@@ -15,17 +21,15 @@ export const Quiz = ({ questions }) => {
   const [showScore, setShowScore] = useState(false);
   const [keepTrack, setKeepTrack] = useState([]);
   const score = useRef([]);
+  const toast = useToast();
   const countAnswer = useRef(0);
   const [isAttempted, setIsAttempted] = useState(false);
   const [finalScore, setFinalScore] = useState(null);
+  const [loadingScore, setLoadingScore] = useState(false);
 
-  // console.log("score", score.current);
-  //console.log("track--", keepTrack);
   const handleAnswerOptionClick = (index) => {
     if (score.current[currentQuestion]) {
     }
-    //console.log(":track", keepTrack);
-
     if (questions[currentQuestion].hasMultiAns) {
       if (keepTrack.includes(index)) {
         let values = [...keepTrack];
@@ -47,20 +51,28 @@ export const Quiz = ({ questions }) => {
   };
 
   const getScore = () => {
-    /// console.log("score", score.current);
+    toast({
+      title: "getting score",
+      status: "success",
+      duration: 2000,
+      isClosable: true,
+    });
     axios
       .post(
         `https://quiz-backend-production.up.railway.app/quiz/score/${id}`,
         score.current
       )
       .then((res) => {
-        //console.log(res);
         setShowScore(true);
         setFinalScore(res.data.result);
       })
       .catch((err) => {
-        // console.log("err:", err);
-        toast.warn("Something went wrong");
+        toast({
+          title: err.message,
+          status: "success",
+          duration: 4000,
+          isClosable: true,
+        });
       });
   };
 
@@ -111,42 +123,46 @@ export const Quiz = ({ questions }) => {
         {showScore ? (
           <ScoreBoard finalScore={finalScore} questions={questions} />
         ) : (
-          <>
-            <div className=" card col-md-6 col-lg-6 m-auto shadow-lg">
-              <div className="question-section card-header">
-                <div className="question-count text-end text-success">
-                  <span>
-                    <b>Question </b> {currentQuestion + 1}
-                  </span>
-                  /{questions.length}
-                </div>
-                <Text fontSize={"20"} color={"red"}>
-                  <b>Question: </b>
-                  {questions[currentQuestion].question}
-                </Text>
+          <Box
+            w={["100%", "50%"]}
+            m="auto"
+            bg={useColorModeValue("gray.500", "gray.700")}
+            borderRadius="30"
+            p="5"
+          >
+            <div className="question-section card-header">
+              <div className="question-count text-end text-success">
+                <span>
+                  <b>Question </b> {currentQuestion + 1}
+                </span>
+                /{questions.length}
               </div>
-              <div className="card-body">
-                <div className="question-count text-end">
-                  <span>
-                    {questions[currentQuestion].hasMultiAns &&
-                      "Question has Multiple Answers"}
-                  </span>
-                </div>
-                <PlayEach
-                  currentOPtions={currentOPtions}
-                  handleAnswerOptionClick={handleAnswerOptionClick}
-                  isAttempted={isAttempted}
-                  setIsAttempted={setIsAttempted}
-                  gotoNextQuestion={gotoNextQuestion}
-                  questions={questions}
-                  currentQuestion={currentQuestion}
-                  countAnswer={countAnswer.current}
-                  keepTrack={keepTrack}
-                  hasMultiAns={questions[currentQuestion].hasMultiAns}
-                />
-              </div>
+              <Text fontSize={"20"} color={"red"}>
+                <b>Question: </b>
+                {questions[currentQuestion].question}
+              </Text>
             </div>
-          </>
+            <div className="card-body">
+              <div className="question-count text-end">
+                <span>
+                  {questions[currentQuestion].hasMultiAns &&
+                    "Question has Multiple Answers"}
+                </span>
+              </div>
+              <PlayEach
+                currentOPtions={currentOPtions}
+                handleAnswerOptionClick={handleAnswerOptionClick}
+                isAttempted={isAttempted}
+                setIsAttempted={setIsAttempted}
+                gotoNextQuestion={gotoNextQuestion}
+                questions={questions}
+                currentQuestion={currentQuestion}
+                countAnswer={countAnswer.current}
+                keepTrack={keepTrack}
+                hasMultiAns={questions[currentQuestion].hasMultiAns}
+              />
+            </div>
+          </Box>
         )}
       </div>
     </div>

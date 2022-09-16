@@ -19,6 +19,7 @@ import {
   Button,
   Box,
   Icon,
+  Spinner,
 } from "@chakra-ui/react";
 import { useToast } from "@chakra-ui/react";
 
@@ -30,6 +31,7 @@ export const HomeRight = () => {
   const [userQuizes, setUserQuizes] = useState([]);
   const [error, setError] = useState(null);
   const [page, setPage] = useState(1);
+  const [loading, setLoading] = useState(true);
   const toast = useToast();
 
   const pageNumber = useRef(1);
@@ -42,6 +44,7 @@ export const HomeRight = () => {
   const { decodedToken, isExpired, reEvaluateToken } = useJwt(token?.token);
 
   const getQuizes = (page) => {
+    setLoading(true);
     const pageNumber = page || 1;
     axios
       .get(
@@ -56,10 +59,12 @@ export const HomeRight = () => {
         console.log("getting quizes");
         setUserQuizes(res?.data?.currentQuiz);
         setTotalPages(res?.data?.totalPages);
+        setLoading(false);
       })
       .catch((err) => {
         console.log("err:", err);
         setError(err.message);
+        setLoading(false);
         toast({
           title: err.message,
           status: "error",
@@ -116,31 +121,40 @@ export const HomeRight = () => {
                   direction={{ base: "column", sm: "row" }}
                   alignItems="center"
                 >
-                  <YourQuizes
-                    quizes={userQuizes}
-                    getQuizes={getQuizes}
-                    error={error}
-                  />
+                  {loading ? (
+                    <>
+                      <Stack direction="row" spacing={4}>
+                        <Spinner size="lg" />
+                      </Stack>
+                    </>
+                  ) : (
+                    <YourQuizes
+                      quizes={userQuizes}
+                      getQuizes={getQuizes}
+                      error={error}
+                    />
+                  )}
                 </HStack>
                 <Stack
                   spacing={{ base: 5, sm: 2 }}
                   direction={{ base: "column", sm: "row" }}
                   alignItems="center"
                 >
-                  {pages.map((e, i) => (
-                    <Button
-                      disabled={pageNumber.current === i + 1}
-                      onClick={() => {
-                        pageNumber.current = i + 1;
-                        getQuizes(i + 1);
-                      }}
-                      colorScheme="teal"
-                      size="xs"
-                      key={nanoid(6)}
-                    >
-                      {i + 1}
-                    </Button>
-                  ))}
+                  {!loading &&
+                    pages.map((e, i) => (
+                      <Button
+                        disabled={pageNumber.current === i + 1}
+                        onClick={() => {
+                          pageNumber.current = i + 1;
+                          getQuizes(i + 1);
+                        }}
+                        colorScheme="teal"
+                        size="xs"
+                        key={nanoid(6)}
+                      >
+                        {i + 1}
+                      </Button>
+                    ))}
                 </Stack>
               </Stack>
             </Stack>

@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 import { useJwt } from "react-jwt";
 import axios from "axios";
 import { Navbar } from "../Navbar/Navbar";
-import { Box } from "@chakra-ui/react";
+import { Box, useColorModeValue } from "@chakra-ui/react";
 
 export const EditQuiz = () => {
   const { id } = useParams();
@@ -47,7 +47,9 @@ export const EditQuiz = () => {
   return (
     <>
       <Navbar />
-      <Box p="2">{quizData && <AddQuestion quizData={quizData} />}</Box>
+      <Box bg={useColorModeValue("gray.500", "black.400")} p="2">
+        {quizData && <AddQuestion quizData={quizData} />}
+      </Box>
     </>
   );
 };

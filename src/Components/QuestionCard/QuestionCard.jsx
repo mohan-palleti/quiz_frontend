@@ -5,7 +5,15 @@ import { SingleQuestion } from "../SingleQuestion/SingleQuestion";
 import cross from "../../assets/cross.png";
 import checked from "../../assets/checked.png";
 import { CheckCircleIcon, CloseIcon } from "@chakra-ui/icons";
-import { Box, Button, Flex, Heading, Stack, Text } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  Flex,
+  Heading,
+  Stack,
+  Text,
+  useColorModeValue,
+} from "@chakra-ui/react";
 
 export const QuestionCard = ({
   quizData,
@@ -34,7 +42,11 @@ export const QuestionCard = ({
           setEdit={setEdit}
         />
       ) : (
-        <Box bg="white" p="6" borderRadius="20">
+        <Box
+          bg={useColorModeValue("gray.600", "gray.700")}
+          p="6"
+          borderRadius="20"
+        >
           <div>
             <Box>
               <Text>Question</Text>
@@ -46,7 +58,7 @@ export const QuestionCard = ({
 
               {answerOptions.map((ele, index) => {
                 return (
-                  <Flex key={index} bg="gray.100" mt="1" borderRadius="5" p="1">
+                  <Flex key={index} mt="1" borderRadius="5" p="1">
                     <p> {index + 1 + ") " + ele.answerText}</p>
                     {ele.isCorrect ? (
                       <CheckCircleIcon m={2} color="green.500" />

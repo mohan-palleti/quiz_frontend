@@ -3,8 +3,6 @@ import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllQuizes } from "../store/quizSlice";
 import { nanoid } from "nanoid";
-import Tippy from "@tippyjs/react";
-import "tippy.js/dist/tippy.css"; // optional
 import { QuizCard } from "./QuizCard/QuizCard";
 import {
   chakra,
@@ -16,6 +14,7 @@ import {
   Button,
   Box,
   Icon,
+  Spinner,
 } from "@chakra-ui/react";
 export const HomeLeft = () => {
   const code = useRef("n");
@@ -28,7 +27,9 @@ export const HomeLeft = () => {
       navigate(`playquiz/${code.current}`);
     } else setWrongCode(true);
   };
-  const { allQuizes, totalPages, error } = useSelector((store) => store.quiz);
+  const { allQuizes, totalPages, error, loading } = useSelector(
+    (store) => store.quiz
+  );
   const pages = [];
   for (let i = 1; i <= totalPages; i++) {
     pages.push(i);
@@ -79,7 +80,11 @@ export const HomeLeft = () => {
             direction={{ base: "column", sm: "row" }}
             alignItems="center"
           >
-            {allQuizes.length === 0 && <Text>No Quizes to show</Text>}
+            {loading && (
+              <Stack direction="row" spacing={4}>
+                <Spinner size="xl" />
+              </Stack>
+            )}
             {allQuizes.map((ele) => {
               if (ele.isPublished)
                 return (

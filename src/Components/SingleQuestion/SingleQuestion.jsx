@@ -123,6 +123,12 @@ export const SingleQuestion = ({
         const mul = noCorrectOption > 1;
 
         if (Cookies.get("QuizUser")) {
+          toast({
+            title: "Saving",
+            status: "success",
+            duration: 1000,
+            isClosable: true,
+          });
           axios
             .patch(
               `https://quiz-backend-production.up.railway.app/question/${questionExist.id}`,
@@ -172,6 +178,12 @@ export const SingleQuestion = ({
       } else {
         const mul = noCorrectOption > 1;
         if (Cookies.get("QuizUser")) {
+          toast({
+            title: "Saving",
+            status: "success",
+            duration: 1000,
+            isClosable: true,
+          });
           axios
             .post(
               "https://quiz-backend-production.up.railway.app/question",
@@ -189,7 +201,6 @@ export const SingleQuestion = ({
             )
             .then((res) => {
               getQuiz();
-              //toast.success("Saved");
               toast({
                 title: "Saved",
                 status: "success",
@@ -198,8 +209,6 @@ export const SingleQuestion = ({
               });
             })
             .catch((err) => {
-              // console.log("err:", err);
-              //toast.warn("Question Not Posted , Please Try Again");
               toast({
                 title: err.message,
                 status: "error",
@@ -230,7 +239,12 @@ export const SingleQuestion = ({
   //!---------------------------END OF SUBMIT----------------------------------------------------------------
 
   const deleteQuestion = (id) => {
-    console.log(id);
+    toast({
+      title: "Deleting",
+      status: "warning",
+      duration: 1000,
+      isClosable: true,
+    });
     if (Cookies.get("QuizUser")) {
       axios
         .delete(
@@ -260,7 +274,7 @@ export const SingleQuestion = ({
         });
     } else {
       toast({
-        title: err.message,
+        title: "PLease Login",
         status: "error",
         duration: 5000,
         isClosable: true,
@@ -286,7 +300,7 @@ export const SingleQuestion = ({
       w={["100%", 650]}
       borderRadius="20px"
       boxShadow="xs"
-      bg="white"
+      bg="blue.900"
     >
       <div>
         <h5>
@@ -294,7 +308,6 @@ export const SingleQuestion = ({
             <FormLabel>Question</FormLabel>
             <Input
               type="text"
-              bg="green.100"
               defaultValue={question}
               placeholder="Question"
               onChange={(e) => {
@@ -321,7 +334,6 @@ export const SingleQuestion = ({
                     name="answerText"
                     placeholder="option"
                     type="text"
-                    bg="whitesmoke"
                     mt="2"
                     defaultValue={ele.answerText}
                     onChange={(e) => {

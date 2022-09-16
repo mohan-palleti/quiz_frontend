@@ -52,9 +52,9 @@ export const PlayQuiz = () => {
     );
   if (isNotPublished) return <Heading>Quiz is not PUblish yet</Heading>;
   return (
-    <div className="col-sm-12">
+    <Box w={["100%", "100%"]}>
       <Navbar />
-      <div className="container mt-5" style={{ height: "82vh" }}>
+      <Box w={["100%", "70%"]} m="auto" mt="10" style={{ height: "82vh" }}>
         {isValid ? (
           <>
             <Box mb="5" textAlign="center">
@@ -72,7 +72,7 @@ export const PlayQuiz = () => {
             <Heading>Not a valid quiz code</Heading>
           </div>
         )}
-      </div>
-    </div>
+      </Box>
+    </Box>
   );
 };

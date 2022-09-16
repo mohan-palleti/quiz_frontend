@@ -1,4 +1,4 @@
-import { Button, Flex } from "@chakra-ui/react";
+import { Button, Flex, useColorModeValue } from "@chakra-ui/react";
 import { nanoid } from "nanoid";
 import React from "react";
 import { useState } from "react";
@@ -23,7 +23,7 @@ export const PlayEach = ({
           return (
             <div className="col-12 m-1" key={id}>
               <Button
-                colorScheme={keepTrack?.includes(index) ? "red" : "gray"}
+                colorScheme={keepTrack?.includes(index) ? "red" : "teal"}
                 onClick={() => {
                   handleAnswerOptionClick(index);
                 }}
@@ -42,7 +42,7 @@ export const PlayEach = ({
       <Flex justify="space-around">
         {currentQuestion !== 0 && (
           <Button
-            colorScheme="blackAlpha"
+            colorScheme="facebook"
             onClick={() => {
               gotoNextQuestion("back");
             }}
