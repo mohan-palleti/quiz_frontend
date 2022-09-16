@@ -160,14 +160,14 @@ export const CreateQuiz = () => {
   return (
     <>
       <Navbar />
-      <div className="container overflow-auto " style={{ height: "88vh" }}>
-        <div className="p-2">
-          <div className="">
+      <Box w={["100%", 800]} m="auto" mt="10" p={[5, 10]} boxShadow="2xl">
+        <div>
+          <div>
             <FormControl id="Title">
               <FormLabel>Title</FormLabel>
               <Input
                 type="text"
-                width={650}
+                w={[250, 650]}
                 placeholder="Quiz Title"
                 onChange={(e) => (title.current = e.target.value)}
               />
@@ -178,21 +178,21 @@ export const CreateQuiz = () => {
             </Text>
           </div>
 
-          <div className="">
-            <div className=" ">
-              <div className="">
+          <div>
+            <div>
+              <div>
                 <FormControl id="Question">
                   <FormLabel>Question</FormLabel>
                   <Input
                     type="text"
-                    width={350}
+                    w={[300, 550]}
                     placeholder="Question"
                     onChange={(e) => {
                       question.current = e.target.value;
                     }}
                   />
                 </FormControl>
-                <span>
+                <Box>
                   <Text className="form-text">Options</Text>
 
                   {answerOptions.map((ele, index) => {
@@ -202,7 +202,7 @@ export const CreateQuiz = () => {
                         spacing={2}
                         direction="row"
                         justifyContent="start"
-                        width={450}
+                        w={[200, 450]}
                         alignItems="center"
                         gap="2"
                       >
@@ -210,7 +210,7 @@ export const CreateQuiz = () => {
                           <Input
                             type="text"
                             name="answerText"
-                            width={200}
+                            w={[125, 450]}
                             placeholder="Option"
                             onChange={(e) => {
                               handleInput(index, e);
@@ -250,7 +250,7 @@ export const CreateQuiz = () => {
                       </Stack>
                     );
                   })}
-                </span>
+                </Box>
                 <div>
                   <Button
                     colorScheme="green"
@@ -274,7 +274,7 @@ export const CreateQuiz = () => {
             </div>
           </div>
         </div>
-      </div>
+      </Box>
     </>
   );
 };

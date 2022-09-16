@@ -16,23 +16,6 @@ import {
 
 export const QuizCard = ({ quiz }) => {
   return (
-    // <div>
-    //   <div className="row m-2 rounded ">
-    //     <div className=" d-flex justify-content-around">
-    //       <div className="card w-100">
-    //         <h5 className="card-header"> {quiz.title}</h5>
-    //         <div className="card-body">
-    //           <h5 className="card-title">PermaLink - {quiz.permaLink}</h5>
-    //           <Link
-    //
-    //             className="btn btn-primary"
-    //           >
-    //             Take Quiz
-    //           </Link>
-    //         </div>
-    //       </div>
-    //     </div>
-    //   </div>
     // </div>
     <Link to={`playquiz/${quiz.permaLink}`}>
       <Stack

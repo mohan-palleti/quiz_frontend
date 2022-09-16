@@ -4,6 +4,7 @@ import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 import { ScoreBoard } from "./ScoreBoard";
 import { ToastContainer, toast } from "react-toastify";
+import { Heading, Text } from "@chakra-ui/react";
 
 export const Quiz = ({ questions }) => {
   const { id } = useParams();
@@ -119,12 +120,10 @@ export const Quiz = ({ questions }) => {
                   </span>
                   /{questions.length}
                 </div>
-                <div className="question-text text-center text-danger">
-                  <h5>
-                    <b className="text-danger">Question: </b>
-                    {questions[currentQuestion].question}
-                  </h5>
-                </div>
+                <Text fontSize={"20"} color={"red"}>
+                  <b>Question: </b>
+                  {questions[currentQuestion].question}
+                </Text>
               </div>
               <div className="card-body">
                 <div className="question-count text-end">

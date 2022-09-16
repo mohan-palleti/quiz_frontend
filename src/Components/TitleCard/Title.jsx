@@ -1,4 +1,11 @@
-import { Button, Flex, Heading } from "@chakra-ui/react";
+import {
+  Button,
+  Flex,
+  FormControl,
+  FormLabel,
+  Heading,
+  Input,
+} from "@chakra-ui/react";
 import Cookies from "js-cookie";
 import React from "react";
 import { useState } from "react";
@@ -34,9 +41,12 @@ export const Title = ({ title, editQuiz }) => {
   return (
     <div>
       {edit ? (
-        <Flex justifyContent="space-around">
-          <Heading>Title-{"       " + title.current}</Heading>
+        <Flex fontSize={[10]} justifyContent="space-around">
+          <Heading as="h6" size={["md", "xl"]}>
+            Title-{"       " + title.current}
+          </Heading>
           <Button
+            fontSize={[10, 20]}
             colorScheme="yellow"
             onClick={() => {
               setEdit(!edit);
@@ -47,14 +57,18 @@ export const Title = ({ title, editQuiz }) => {
         </Flex>
       ) : (
         <span>
+          <FormControl>
+            <FormLabel>Title</FormLabel>
+            <Input
+              type="text"
+              bg="green.100"
+              placeholder="Quiz Title"
+              defaultValue={title.current}
+              onChange={(e) => (title.current = e.target.value)}
+            />
+          </FormControl>
           <label>Title</label>
-          <input
-            type="text"
-            className="form-control w-50 fs-2"
-            placeholder="Quiz Title"
-            defaultValue={title.current}
-            onChange={(e) => (title.current = e.target.value)}
-          />
+          <input type="text" />
           <Button
             colorScheme="yellow"
             type="submit"

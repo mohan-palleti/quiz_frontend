@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import { useJwt } from "react-jwt";
 import axios from "axios";
 import { Navbar } from "../Navbar/Navbar";
+import { Box } from "@chakra-ui/react";
 
 export const EditQuiz = () => {
   const { id } = useParams();
@@ -26,7 +27,7 @@ export const EditQuiz = () => {
           },
         })
         .then((res) => {
-          console.log("res: to be edited  quiz", res);
+          //  console.log("res: to be edited  quiz", res);
           setQuizData(res.data);
         })
         .catch((err) => {
@@ -46,9 +47,7 @@ export const EditQuiz = () => {
   return (
     <>
       <Navbar />
-      <div className="container">
-        {quizData && <AddQuestion quizData={quizData} />}
-      </div>
+      <Box p="2">{quizData && <AddQuestion quizData={quizData} />}</Box>
     </>
   );
 };

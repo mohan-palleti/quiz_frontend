@@ -1,3 +1,4 @@
+import { Button, Flex } from "@chakra-ui/react";
 import { nanoid } from "nanoid";
 import React from "react";
 import { useState } from "react";
@@ -16,23 +17,19 @@ export const PlayEach = ({
 }) => {
   return (
     <div className="text-center">
-      <div className="answer-section form-check d-flex flex-column mb-3">
+      <Flex direction="column" mb="5">
         {currentOPtions.map((answerOption, index) => {
           const id = nanoid(3);
           return (
             <div className="col-12 m-1" key={id}>
-              <button
-                className={`btn ${
-                  keepTrack?.includes(index)
-                    ? "btn-warning w-50"
-                    : "btn-outline-dark w-50"
-                }`}
+              <Button
+                colorScheme={keepTrack?.includes(index) ? "red" : "gray"}
                 onClick={() => {
                   handleAnswerOptionClick(index);
                 }}
               >
                 {answerOption.answerText}
-              </button>
+              </Button>
             </div>
           );
         })}
@@ -41,28 +38,27 @@ export const PlayEach = ({
             This question has multiple answers
           </div>
         )}
-      </div>
-      <div className="d-flex justify-content-around">
-        {
-          <button
-            className="btn btn-dark"
+      </Flex>
+      <Flex justify="space-around">
+        {currentQuestion !== 0 && (
+          <Button
+            colorScheme="blackAlpha"
             onClick={() => {
               gotoNextQuestion("back");
             }}
-            disabled={currentQuestion === 0}
           >
             back
-          </button>
-        }
-        <button
-          className="btn btn-info"
+          </Button>
+        )}
+        <Button
+          colorScheme="blue"
           onClick={() => {
             gotoNextQuestion();
           }}
         >
           Submit {currentQuestion !== questions?.length - 1 && "& Next"}
-        </button>
-      </div>
+        </Button>
+      </Flex>
     </div>
   );
 };

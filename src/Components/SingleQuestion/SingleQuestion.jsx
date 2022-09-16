@@ -208,7 +208,6 @@ export const SingleQuestion = ({
               });
             });
         } else {
-          //toast.warn("PLease Login");
           toast({
             title: "Please login",
             status: "error",
@@ -260,7 +259,6 @@ export const SingleQuestion = ({
           });
         });
     } else {
-      //  toast.warn("PLease Login");
       toast({
         title: err.message,
         status: "error",
@@ -283,12 +281,12 @@ export const SingleQuestion = ({
 
   return (
     <Box
-      p={5}
+      p="5"
       border="1px"
-      w={650}
+      w={["100%", 650]}
       borderRadius="20px"
-      bg={"#171923"}
       boxShadow="xs"
+      bg="white"
     >
       <div>
         <h5>
@@ -296,7 +294,7 @@ export const SingleQuestion = ({
             <FormLabel>Question</FormLabel>
             <Input
               type="text"
-              width={550}
+              bg="green.100"
               defaultValue={question}
               placeholder="Question"
               onChange={(e) => {
@@ -315,25 +313,17 @@ export const SingleQuestion = ({
                 direction="row"
                 align="center"
                 justify="center"
-                justifyContent="space-around"
+                justifyContent={["start"]}
                 key={index}
-                w={550}
               >
-                {/* <input
-                  type="text"
-                  className="form-control w-50 "
-                  onChange={(e) => {
-                    if (iserror) setIserror(false);
-                    handleInput(index, e);
-                  }}
-                /> */}
                 <FormControl>
                   <Input
                     name="answerText"
                     placeholder="option"
                     type="text"
+                    bg="whitesmoke"
+                    mt="2"
                     defaultValue={ele.answerText}
-                    width={350}
                     onChange={(e) => {
                       if (iserror) setIserror(false);
                       handleInput(index, e);
@@ -341,7 +331,7 @@ export const SingleQuestion = ({
                   />
                 </FormControl>
 
-                <FormControl ml={5}>
+                <FormControl ml={[1, 5]} w={[20]}>
                   <Switch
                     id="isChecked"
                     name="isCorrect"
@@ -352,16 +342,17 @@ export const SingleQuestion = ({
 
                 <Button
                   colorScheme="red"
+                  w={[5]}
                   disabled={answerOptions.length == 1}
                   onClick={() => {
                     handleRemoveOption(index);
                   }}
                 >
-                  <MinusIcon />
+                  <MinusIcon fontSize={[9]} />
                 </Button>
                 {index == answerOptions.length - 1 && (
                   <Button
-                    ml={5}
+                    ml={[1, 5]}
                     colorScheme="green"
                     onClick={() => {
                       handleAddOption();

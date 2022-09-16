@@ -10,7 +10,7 @@ import { useSelector } from "react-redux";
 import Cookies from "js-cookie";
 import { QuestionCard } from "../QuestionCard/QuestionCard";
 import { Title } from "../TitleCard/Title";
-import { useToast } from "@chakra-ui/react";
+import { Box, Button, HStack, useToast } from "@chakra-ui/react";
 
 export const AddQuestion = ({ quizData }) => {
   const [existingQues, setExistingQues] = useState([]);
@@ -165,24 +165,18 @@ export const AddQuestion = ({ quizData }) => {
   };
 
   return (
-    <div>
-      <div className="row ">
-        <div className=" mb-3">
-          <Title title={title} editQuiz={editQuiz} />
-        </div>
+    <Box bg="#e2eee8" borderRadius="5" p="2" fontSize={[10, 20]}>
+      <div>
+        <Title title={title} editQuiz={editQuiz} />
 
-        <div id="emailHelp" className="form-text">
-          *Add Questions to Quiz
-        </div>
+        <div>*Add Questions to Quiz</div>
       </div>
-      <div className="row">
-        <div className="col-12">
-          {/* map existing Questions */}
-          {existingQues === null && <p>Added questions will appear here</p>}
+      <div>
+        <div>
           {existingQues &&
             existingQues.map((element, index) => {
               return (
-                <span key={nanoid(10)}>
+                <Box key={nanoid(10)}>
                   <QuestionCard
                     quizData={quizData}
                     getQuiz={getQuiz}
@@ -190,7 +184,7 @@ export const AddQuestion = ({ quizData }) => {
                     questionNumber={index}
                     existingQues={existingQues}
                   />
-                </span>
+                </Box>
               );
             })}
         </div>
@@ -203,8 +197,9 @@ export const AddQuestion = ({ quizData }) => {
         />
       ) : (
         <>
-          <button
-            className="btn btn-dark mt-3"
+          <Button
+            bg="blackAlpha.600"
+            colorScheme="white"
             onClick={() => {
               setAddQues(true);
             }}
@@ -213,23 +208,22 @@ export const AddQuestion = ({ quizData }) => {
             {existingQues?.length === 10
               ? "Max limit Reached"
               : " Add Question"}
-          </button>
+          </Button>
         </>
       )}
       <br />
-      <div className="col-6 text-end  ">
+      <HStack mt={[10]}>
         {existingQues?.length >= 1 && (
-          <Link to="/" className="btn btn-danger me-3">
-            Done
-          </Link>
+          <Button colorScheme="blue">
+            <Link to="/">Done</Link>
+          </Button>
         )}
-        <button
-          className="btn btn-danger"
+        <Button
+          colorScheme="red"
           onClick={() => {
             if (Cookies.get("QuizUser")) {
               deleteQuiz();
             } else {
-              //toast.warn("Please Login ");
               toast({
                 title: "Please Login",
                 status: "error",
@@ -241,8 +235,8 @@ export const AddQuestion = ({ quizData }) => {
           }}
         >
           Delete Quiz
-        </button>
-      </div>
-    </div>
+        </Button>
+      </HStack>
+    </Box>
   );
 };

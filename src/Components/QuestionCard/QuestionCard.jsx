@@ -23,7 +23,7 @@ export const QuestionCard = ({
   }, []);
 
   return (
-    <Stack bg="#171923" p={10} w={650} m={10} borderRadius="20px">
+    <Stack p={[1, 10]} w={["100%", 650]} m={[0, 10]} borderRadius="20px">
       {edit ? (
         <SingleQuestion
           quizData={quizData}
@@ -34,45 +34,42 @@ export const QuestionCard = ({
           setEdit={setEdit}
         />
       ) : (
-        <span>
+        <Box bg="white" p="6" borderRadius="20">
           <div>
+            <Box>
+              <Text>Question</Text>
+
+              <Heading color="red">{question}</Heading>
+            </Box>
+            <span>
+              <Text>Options</Text>
+
+              {answerOptions.map((ele, index) => {
+                return (
+                  <Flex key={index} bg="gray.100" mt="1" borderRadius="5" p="1">
+                    <p> {index + 1 + ") " + ele.answerText}</p>
+                    {ele.isCorrect ? (
+                      <CheckCircleIcon m={2} color="green.500" />
+                    ) : (
+                      <CloseIcon m={2} color="red.400" />
+                    )}
+                  </Flex>
+                );
+              })}
+            </span>
             <div>
-              <div>
-                <Box>
-                  <Text>Question</Text>
-
-                  <Heading color="tomato">{question}</Heading>
-                </Box>
-                <span>
-                  <Text m={2}>Options</Text>
-
-                  {answerOptions.map((ele, index) => {
-                    return (
-                      <Flex m={5} key={index}>
-                        <p> {index + 1 + ") " + ele.answerText}</p>
-                        {ele.isCorrect ? (
-                          <CheckCircleIcon m={2} color="green.500" />
-                        ) : (
-                          <CloseIcon m={2} color="red.400" />
-                        )}
-                      </Flex>
-                    );
-                  })}
-                </span>
-                <div>
-                  <Button
-                    onClick={() => {
-                      setEdit(true);
-                    }}
-                    colorScheme="yellow"
-                  >
-                    Edit
-                  </Button>
-                </div>
-              </div>
+              <Button
+                mt="1"
+                onClick={() => {
+                  setEdit(true);
+                }}
+                colorScheme="yellow"
+              >
+                Edit
+              </Button>
             </div>
           </div>
-        </span>
+        </Box>
       )}
     </Stack>
   );

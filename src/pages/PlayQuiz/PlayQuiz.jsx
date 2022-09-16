@@ -3,12 +3,14 @@ import { Navbar } from "../../Components/Navbar/Navbar";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { Quiz } from "../../Components/quizGame/Quiz";
+import { Box, Heading, Spinner } from "@chakra-ui/react";
 
 export const PlayQuiz = () => {
   const [isNotPublished, setIsNotPublished] = useState(false);
   const { id } = useParams();
   const [isValid, setIsValid] = useState(false);
   const quiz = useRef(null);
+  const [Loading, setLoading] = useState(true);
   const checkCode = (id) => {
     if (id.length >= 6 && id) {
       axios
@@ -24,9 +26,11 @@ export const PlayQuiz = () => {
           //console.log(quiz);
           if (!res.data.isPublished) setIsNotPublished(true);
           setIsValid(true);
+          setLoading(false);
         })
         .catch((err) => {
           setIsValid(false);
+          setLoading(false);
           console.log("err:", err);
         });
     }
@@ -34,16 +38,28 @@ export const PlayQuiz = () => {
   useEffect(() => {
     checkCode(id);
   }, []);
-  if (isNotPublished) return <h1>Quiz is not PUblish yet</h1>;
+  if (Loading)
+    return (
+      <Box m="auto" w="200">
+        <Spinner
+          thickness="10px"
+          speed="0.65s"
+          emptyColor="gray.200"
+          color="blue.500"
+          size="xl"
+        />
+      </Box>
+    );
+  if (isNotPublished) return <Heading>Quiz is not PUblish yet</Heading>;
   return (
     <div className="col-sm-12">
       <Navbar />
       <div className="container mt-5" style={{ height: "82vh" }}>
         {isValid ? (
           <>
-            <div className="text-center text-primary mt-5">
-              <h2>Title - {quiz.current?.title}</h2>
-            </div>
+            <Box mb="5" textAlign="center">
+              <Heading>Title - {quiz.current?.title}</Heading>
+            </Box>
 
             <Quiz
               questions={quiz.current.questions.sort(
@@ -52,11 +68,9 @@ export const PlayQuiz = () => {
             />
           </>
         ) : (
-          <>
-            <div>
-              <h2>Not a valid quiz code</h2>
-            </div>
-          </>
+          <div>
+            <Heading>Not a valid quiz code</Heading>
+          </div>
         )}
       </div>
     </div>
