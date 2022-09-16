@@ -33,7 +33,7 @@ export const ScoreBoard = ({ finalScore, questions }) => {
   return (
     <>
       <div>
-        <Box w={[320, 500]} m="auto" bg="gray.400" borderRadius="30">
+        <Box w={[320, 500]} m="auto" bg="gray.700" borderRadius="30">
           <Text pt="6" ps="6">
             <h2>Your Score</h2>
           </Text>

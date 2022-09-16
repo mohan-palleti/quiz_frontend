@@ -28,6 +28,12 @@ export function Navbar() {
     }
   }, []);
   const { colorMode, toggleColorMode } = useColorMode();
+  const [toggle, setToggle] = useState(true);
+  useEffect(() => {
+    if (colorMode === "light" && toggle) {
+      toggleColorMode();
+    }
+  }, [toggle]);
 
   return (
     <>
@@ -57,8 +63,13 @@ export function Navbar() {
                 </Button>
               )}
 
-              <Button onClick={toggleColorMode}>
-                {colorMode === "dark" ? <MoonIcon /> : <SunIcon />}
+              <Button
+                onClick={() => {
+                  setToggle(false);
+                  toggleColorMode();
+                }}
+              >
+                {colorMode === "light" ? <MoonIcon /> : <SunIcon />}
               </Button>
             </Stack>
           </Flex>

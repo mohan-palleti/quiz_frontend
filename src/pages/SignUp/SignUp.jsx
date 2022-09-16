@@ -23,19 +23,12 @@ import { useToast } from "@chakra-ui/react";
 import { Link, useNavigate } from "react-router-dom";
 import { Navbar } from "../../Components/Navbar/Navbar";
 import { userRegisterSchema } from "../../Components/joi-schema/quizHeadingSchema";
-import { useRef } from "react";
-import { useEffect } from "react";
-import { ToastContainer, toast } from "react-toastify";
 
 function SignUp() {
-  // var [toast, setToast] = useState(false);
-  const toastRef = useRef();
-
   const navigate = useNavigate();
-  const [isError, setIsError] = useState(null);
 
   const [adding, setAdding] = useState(false);
-  const [emailExists, setEmailExists] = useState(false);
+
   const toast = useToast();
   const {
     register,
@@ -98,85 +91,24 @@ function SignUp() {
   };
 
   return (
-    // <div>
-    //   <Navbar />
-    //   <form
-    //     className="col-lg-6 col-md-4 col-sm-2 w-sm-50  m-auto"
-    //     onSubmit={handleSubmit(onSubmit)}
-    //     style={{ height: "88vh" }}
-    //   >
-    //     <h2>Register</h2>
-
-    //     <div className="input-group  mb-4">
-    //       <span className="input-group-text" id="basic-addon1">
-    //         <img src={user} alt="username" width="15px" />
-    //       </span>
-    //       <input
-    //         type="text"
-    //         id="form2Example"
-    //         className="form-control"
-    //         placeholder="Name"
-    //         {...register("name")}
-    //         required
-    //       />
-    //     </div>
-
-    //     <div className="input-group mb-4">
-    //       <span className="input-group-text" id="basic-addon1">
-    //         <img src={email} alt="email" width="15px" />
-    //       </span>
-    //       <input
-    //         type="email"
-    //         id="form2Example1"
-    //         className="form-control"
-    //         placeholder="Email Address"
-    //         {...register("email")}
-    //         required
-    //       />
-    //     </div>
-
-    //     <div className="input-group mb-4">
-    //       <span className="input-group-text" id="basic-addon1">
-    //         <img src={lock} alt="password" width="15px" />
-    //       </span>
-    //       <input
-    //         type="password"
-    //         id="form2Example2"
-    //         className="form-control"
-    //         placeholder="Password"
-    //         required
-    //         {...register("password")}
-    //       />
-    //     </div>
-    //     <div className="text-center">
-    //       {adding ? (
-    //         <div className="spinner-border text-warning" role="status">
-    //           <span className="visually-hidden">Loading...</span>
-    //         </div>
-    //       ) : (
-    //         <button type="submit" className="btn btn-warning mb-4">
-    //           Sign up
-    //         </button>
-    //       )}
-    //     </div>
-
-    //     <div className="text-center">
-    //       <p>
-    //         Have an Account? <Link to="/login">Login</Link>
-    //       </p>
-    //     </div>
-    //   </form>
-    // </div>
     <>
       <Navbar />
       <Flex
         minH={"88vh"}
         align={"center"}
         justify={"center"}
+        w="100%"
         bg={useColorModeValue("gray.50", "gray.800")}
       >
         <form onSubmit={handleSubmit(onSubmit)}>
-          <Stack spacing={8} mx={"auto"} maxW={"lg"} py={12} px={6} w={450}>
+          <Stack
+            spacing={8}
+            mx={"auto"}
+            maxW={"lg"}
+            py={12}
+            px={6}
+            w={["100%", 450]}
+          >
             <Stack align={"center"}>
               <Heading fontSize={"4xl"}>Create an account</Heading>
             </Stack>
