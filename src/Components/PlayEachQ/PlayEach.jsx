@@ -38,6 +38,12 @@ export const PlayEach = ({
             This question has multiple answers
           </div>
         )}
+        <div className="question-count text-end">
+          <span>
+            {questions[currentQuestion].hasMultiAns &&
+              "Question has Multiple Answers"}
+          </span>
+        </div>
       </Flex>
       <Flex justify="space-around">
         {currentQuestion !== 0 && (

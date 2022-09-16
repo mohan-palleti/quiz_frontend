@@ -143,12 +143,6 @@ export const Quiz = ({ questions }) => {
               </Text>
             </div>
             <div className="card-body">
-              <div className="question-count text-end">
-                <span>
-                  {questions[currentQuestion].hasMultiAns &&
-                    "Question has Multiple Answers"}
-                </span>
-              </div>
               <PlayEach
                 currentOPtions={currentOPtions}
                 handleAnswerOptionClick={handleAnswerOptionClick}
