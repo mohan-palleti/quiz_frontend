@@ -20,6 +20,7 @@ import {
   Box,
   Icon,
   Spinner,
+  VStack,
 } from "@chakra-ui/react";
 import { useToast } from "@chakra-ui/react";
 
@@ -116,9 +117,9 @@ export const HomeRight = () => {
               </Stack>
 
               <Stack>
-                <HStack
+                <VStack
                   spacing={{ base: 5, sm: 2 }}
-                  direction={{ base: "column", sm: "row" }}
+                  direction={{ base: "column", sm: "column" }}
                   alignItems="center"
                 >
                   {loading ? (
@@ -134,7 +135,7 @@ export const HomeRight = () => {
                       error={error}
                     />
                   )}
-                </HStack>
+                </VStack>
                 <Stack
                   spacing={{ base: 5, sm: 2 }}
                   direction={{ base: "column", sm: "row" }}

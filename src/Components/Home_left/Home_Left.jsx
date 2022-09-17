@@ -77,7 +77,7 @@ export const HomeLeft = () => {
         <Stack>
           <Stack
             spacing={{ base: 5, sm: 2 }}
-            direction={{ base: "column", sm: "row" }}
+            direction={{ base: "row", sm: "row" }}
             alignItems="center"
           >
             {loading && (
