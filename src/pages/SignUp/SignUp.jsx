@@ -38,11 +38,11 @@ function SignUp() {
   } = useForm();
 
   const onSubmit = (data) => {
-    console.log("first");
+    // console.log("first");
     const { value, error } = userRegisterSchema.validate({ ...data });
 
     if (error) {
-      console.log(error.message);
+      //console.log(error.message);
 
       toast({
         title: error.message,
@@ -53,7 +53,7 @@ function SignUp() {
     } else {
       setAdding(true);
 
-      console.log("fssd");
+      // console.log("fssd");
       setTimeout(() => {
         axios
           .post(
