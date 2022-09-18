@@ -23,7 +23,7 @@ export const ScoreBoard = ({ finalScore, questions }) => {
             <h4>
               Getting Your Score
               <Spinner
-                thickness="4px"
+                thickness="6px"
                 speed="0.65s"
                 emptyColor="gray.200"
                 color="blue.500"
