@@ -17,9 +17,6 @@ export const ScoreBoard = ({ finalScore, questions }) => {
       <>
         <div className="row">
           <div className="col-6 m-auto">
-            <div className="spinner-border text-danger" role="status">
-              <span className="visually-hidden">Loading...</span>
-            </div>
             <h4>
               Getting Your Score
               <Spinner
