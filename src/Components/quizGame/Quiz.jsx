@@ -3,7 +3,6 @@ import { PlayEach } from "../PlayEachQ/PlayEach";
 import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 import { ScoreBoard } from "./ScoreBoard";
-import { ToastContainer, toast } from "react-toastify";
 import {
   Box,
   Heading,
