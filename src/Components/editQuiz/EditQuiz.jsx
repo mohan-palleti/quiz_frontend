@@ -27,7 +27,6 @@ export const EditQuiz = () => {
           },
         })
         .then((res) => {
-          //  console.log("res: to be edited  quiz", res);
           setQuizData(res.data);
         })
         .catch((err) => {
