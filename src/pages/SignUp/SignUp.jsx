@@ -38,12 +38,9 @@ function SignUp() {
   } = useForm();
 
   const onSubmit = (data) => {
-    // console.log("first");
     const { value, error } = userRegisterSchema.validate({ ...data });
 
     if (error) {
-      //console.log(error.message);
-
       toast({
         title: error.message,
         status: "error",
@@ -53,7 +50,6 @@ function SignUp() {
     } else {
       setAdding(true);
 
-      // console.log("fssd");
       setTimeout(() => {
         axios
           .post(
@@ -81,7 +77,6 @@ function SignUp() {
             navigate("/login");
           })
           .catch((err) => {
-            // setEmailExists(true);
             toast.warn("email exists,try another");
             setAdding(false);
             console.log(err);

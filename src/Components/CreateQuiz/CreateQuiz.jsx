@@ -77,8 +77,6 @@ export const CreateQuiz = () => {
     });
     console.log(value);
     if (error) {
-      //console.log(error.message);
-      //toast.warn(error.message);
       toast({
         title: error.message,
         status: "error",
@@ -87,7 +85,6 @@ export const CreateQuiz = () => {
       });
     } else {
       if (noCorrectOption === 0) {
-        //toast.warn();
         toast({
           title: "Atleast one Correct Option Needed",
           status: "error",
@@ -109,8 +106,6 @@ export const CreateQuiz = () => {
               }
             )
             .then((res) => {
-              console.log("posted Question", res.data);
-              //toast.success("Saved");
               toast({
                 title: "Posted Question",
                 status: "success",
@@ -139,7 +134,6 @@ export const CreateQuiz = () => {
         }
         return;
       } else if (answerOptions.length === 1) {
-        // toast.warn("Atleast two options are needed");
         toast({
           title: "Atleast Two options Needed",
           status: "error",

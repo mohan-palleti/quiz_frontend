@@ -41,8 +41,6 @@ export const AddQuestion = ({ quizData }) => {
           setAddQues(false);
         })
         .catch((err) => {
-          console.log(err);
-          // toast.warn("Something Went wrong");
           toast({
             title: err.message,
             status: "error",
@@ -118,7 +116,6 @@ export const AddQuestion = ({ quizData }) => {
             });
           })
           .catch((err) => {
-            //console.log(err);
             toast({
               title: err.message,
               status: "error",
