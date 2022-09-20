@@ -2,8 +2,6 @@ import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
 import { SingleQuestion } from "../SingleQuestion/SingleQuestion";
-import cross from "../../assets/cross.png";
-import checked from "../../assets/checked.png";
 import { CheckCircleIcon, CloseIcon } from "@chakra-ui/icons";
 import {
   Box,

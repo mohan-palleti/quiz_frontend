@@ -2,8 +2,7 @@ import axios from "axios";
 import Cookies from "js-cookie";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { Navigate, useNavigate } from "react-router-dom";
-//import { ToastContainer, toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 import { questionSchema } from "../joi-schema/quizHeadingSchema";
 import {
@@ -14,8 +13,6 @@ import {
   Input,
   Stack,
   Button,
-  Heading,
-  Text,
   Switch,
 } from "@chakra-ui/react";
 import { useToast } from "@chakra-ui/react";
@@ -72,8 +69,6 @@ export const SingleQuestion = ({
       answerOptions,
     });
     if (error && error.message) {
-      console.log(error?.message);
-      // toast.warn(error?.message);
       toast({
         title: error.message,
         status: "error",
@@ -84,7 +79,6 @@ export const SingleQuestion = ({
     }
     if (noCorrectOption === 0 || (existingQues && existingQues?.length > 0)) {
       if (noCorrectOption === 0) {
-        // toast.warn("Atleast one Correct Option Needed");
         toast({
           title: "Atleast one correct option needed",
           status: "error",
@@ -102,7 +96,6 @@ export const SingleQuestion = ({
           if (e.question == value.question) {
             if (questionNumber === index) continue;
             c += 1;
-            // toast.warn("Duplicate Question submitted , Please Check");
             toast({
               title: "Duplicate Question cannot be submitted",
               status: "error",

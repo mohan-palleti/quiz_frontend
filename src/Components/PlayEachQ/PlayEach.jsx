@@ -1,8 +1,6 @@
-import { Button, Flex, useColorModeValue } from "@chakra-ui/react";
+import { Button, Flex } from "@chakra-ui/react";
 import { nanoid } from "nanoid";
 import React from "react";
-import { useState } from "react";
-import { useEffect } from "react";
 
 export const PlayEach = ({
   currentOPtions,
