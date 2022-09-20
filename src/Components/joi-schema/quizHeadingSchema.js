@@ -1,9 +1,5 @@
 import Joi from "joi";
 
-const emailRegEx = RegExp(
-  "^\\w+([\\.-]?\\w+)*@\\w+([\\.-]?\\w+)*(\\.\\w{2,3})+$"
-);
-
 const object = {
   answerText: Joi.string().trim().min(1).message("attttt").required(),
   isCorrect: Joi.boolean().required(),
